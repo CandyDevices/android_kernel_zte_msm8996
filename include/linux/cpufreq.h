@@ -108,8 +108,7 @@ struct cpufreq_policy {
 	 *     __cpufreq_governor(data, CPUFREQ_GOV_POLICY_EXIT);
 	 */
 	struct rw_semaphore	rwsem;
-
-	unsigned int util;
+	unsigned int    util;
 
 	/* Synchronization for frequency transitions */
 	bool			transition_ongoing; /* Tracks transition status */
@@ -392,7 +391,7 @@ int cpufreq_unregister_notifier(struct notifier_block *nb, unsigned int list);
 void cpufreq_freq_transition_begin(struct cpufreq_policy *policy,
 		struct cpufreq_freqs *freqs);
 void cpufreq_freq_transition_end(struct cpufreq_policy *policy,
-		struct cpufreq_freqs *freqs, int transition_failed);
+		struct cpufreq_freqs *freqs, int transition_failed);	
 /*
  * Governor specific info that can be passed to modules that subscribe
  * to CPUFREQ_GOVINFO_NOTIFIER
@@ -540,7 +539,10 @@ extern struct cpufreq_governor cpufreq_gov_chill;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_chill)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTELLIACTIVE)
 extern struct cpufreq_governor cpufreq_gov_intelliactive;
-#define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_intelliactive)
+#define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_intelliactive))
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_HELLSACTIVE)
+extern struct cpufreq_governor cpufreq_gov_hellsactive;
+#define CPUFREQ_DEFAULT_GOVERNOR (&cpufreq_gov_hellsactive)
 #endif
 
 /*********************************************************************
