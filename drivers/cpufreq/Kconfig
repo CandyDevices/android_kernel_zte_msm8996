@@ -200,6 +200,12 @@ config CPU_FREQ_DEFAULT_GOV_CHILL
 	  Be aware that not all cpufreq drivers support the conservative
 	  governor. If unsure have a look at the help section of the
 	  driver. Fallback governor will be the interactive governor.
+	
+config CPU_FREQ_DEFAULT_GOV_INTELLIACTIVE
+        bool "INTELLIACTIVE"
+        select CPU_FREQ_GOV_INTELLIACTIVE
+        ---help---
+          Use the CPUFreq governor 'INTELLIACTIVE' as default.			  		  
 
 endchoice
 
@@ -412,6 +418,13 @@ config CPU_FREQ_GOV_ALUCARD
 	  For details, take a look at linux/Documentation/cpu-freq.
 
 	  If in doubt, say N.
+	
+config CPU_FREQ_GOV_INTELLIACTIVE
+        tristate "'INTELLIACTIVE' cpufreq governor"
+        depends on CPU_FREQ
+        ---help---
+          'INTELLIACTIVE' - a tweaked "ondemand" based smart and smooth optimized governor!
+           If in doubt, say Y.
 
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
